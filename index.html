@@ -11,14 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.5/swagger-ui-bundle.js"></script>
     <script>
         const ui = SwaggerUIBundle({
-            url: "https://github.com/WeiKentPan/MyCinemaApi/blob/main/openapi.yaml", // 替换为您的 Swagger JSON 或 YAML 文件的 URL
-            dom_id: '#swagger-ui',
-            presets: [
-                SwaggerUIBundle.presets.apis,
-                SwaggerUIStandalonePreset
-            ],
-            layout: "StandaloneLayout"
-        });
+    url: "https://raw.githubusercontent.com/WeiKentPan/MyCinemaApi/main/openapi.yaml",
+    dom_id: '#swagger-ui',
+    presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+    ],
+    layout: "StandaloneLayout"
+});
+
     </script>
 </body>
 </html>
