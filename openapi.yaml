@@ -1,0 +1,1011 @@
+openapi: 3.0.1
+info:
+  title: My Cinema API
+  version: 1.0.0
+paths:
+  /api/Admin/AdminLogin:
+    post:
+      tags:
+        - Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminLoginParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AdminLoginParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AdminLoginParam'
+      responses:
+        '200':
+          description: OK
+  /api/Admin/CreateAdmin:
+    post:
+      tags:
+        - Admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateAdminParam'
+      responses:
+        '200':
+          description: OK
+  /api/Admin/GetAllAdmin:
+    get:
+      tags:
+        - Admin
+      responses:
+        '200':
+          description: OK
+  /api/User/Booking/GetAllBooking:
+    get:
+      tags:
+        - Booking
+      responses:
+        '200':
+          description: OK
+  /api/User/Booking/CreateBooking:
+    post:
+      tags:
+        - Booking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingParam'
+      responses:
+        '200':
+          description: OK
+  /api/User/Booking/GetBookingHistory:
+    get:
+      tags:
+        - Booking
+      parameters:
+        - name: userGuid
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/Chat/SendMessageToAll:
+    post:
+      tags:
+        - Chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+  /api/Chat/SendMessageByConnectionId:
+    post:
+      tags:
+        - Chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserMessageRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserMessageRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserMessageRequest'
+      responses:
+        '200':
+          description: OK
+  /api/Chat/GetAdminConnectionId:
+    get:
+      tags:
+        - Chat
+      responses:
+        '200':
+          description: OK
+  /api/Chat/EndSession:
+    get:
+      tags:
+        - Chat
+      parameters:
+        - name: adminId
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageMovie/GetAllMovies:
+    get:
+      tags:
+        - ManageMovie
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageMovie/CreateMovie:
+    post:
+      tags:
+        - ManageMovie
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - PosterFile
+              type: object
+              properties:
+                Title:
+                  type: string
+                Director:
+                  type: string
+                Genre:
+                  type: string
+                DurationInHours:
+                  type: number
+                  format: double
+                ReleaseDate:
+                  type: string
+                  format: date-time
+                EndDate:
+                  type: string
+                  format: date-time
+                Description:
+                  type: string
+                TrailerUrl:
+                  type: string
+                PosterFile:
+                  type: string
+                  format: binary
+            encoding:
+              Title:
+                style: form
+              Director:
+                style: form
+              Genre:
+                style: form
+              DurationInHours:
+                style: form
+              ReleaseDate:
+                style: form
+              EndDate:
+                style: form
+              Description:
+                style: form
+              TrailerUrl:
+                style: form
+              PosterFile:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageMovie/UpdateMovie:
+    post:
+      tags:
+        - ManageMovie
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                MovieGuid:
+                  type: string
+                  format: uuid
+                Title:
+                  type: string
+                Director:
+                  type: string
+                Genre:
+                  type: string
+                DurationInHours:
+                  type: number
+                  format: double
+                ReleaseDate:
+                  type: string
+                  format: date-time
+                EndDate:
+                  type: string
+                  format: date-time
+                Description:
+                  type: string
+                PosterFile:
+                  type: string
+                  format: binary
+                TrailerUrl:
+                  type: string
+            encoding:
+              MovieGuid:
+                style: form
+              Title:
+                style: form
+              Director:
+                style: form
+              Genre:
+                style: form
+              DurationInHours:
+                style: form
+              ReleaseDate:
+                style: form
+              EndDate:
+                style: form
+              Description:
+                style: form
+              PosterFile:
+                style: form
+              TrailerUrl:
+                style: form
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageShowtime/GetAllShowtimes:
+    get:
+      tags:
+        - ManageShowtime
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageShowtime/CreateShowtime:
+    post:
+      tags:
+        - ManageShowtime
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShowTimeParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateShowTimeParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateShowTimeParam'
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageTheater/AddTheater:
+    post:
+      tags:
+        - ManageTheater
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTheaterParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AddTheaterParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AddTheaterParam'
+      responses:
+        '200':
+          description: OK
+  /api/Admin/ManageTheater/UpdateTheater:
+    post:
+      tags:
+        - ManageTheater
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTheaterParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTheaterParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateTheaterParam'
+      responses:
+        '200':
+          description: OK
+  /api/User/Preview/Movie/GetAllMovies:
+    get:
+      tags:
+        - Movie
+      responses:
+        '200':
+          description: OK
+  /api/User/Preview/Movie/GetMovieById/{id}:
+    get:
+      tags:
+        - Movie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/User/Preview/Movie/GetAvailableDates/{movieId}:
+    get:
+      tags:
+        - Movie
+      parameters:
+        - name: movieId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/User/Preview/Movie/GetAvailableExperiences/{movieId}:
+    get:
+      tags:
+        - Movie
+      parameters:
+        - name: movieId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/User/Preview/Movie/GetAvailableTimes/{movieId}:
+    get:
+      tags:
+        - Movie
+      parameters:
+        - name: movieId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/User/Seat/GetAllSeats:
+    get:
+      tags:
+        - Seat
+      responses:
+        '200':
+          description: OK
+  /api/User/Seat/FindSeatViaTheater:
+    post:
+      tags:
+        - Seat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+      responses:
+        '200':
+          description: OK
+  /api/User/Seat/UpdateSeatViaTheater:
+    post:
+      tags:
+        - Seat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSeatRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSeatRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateSeatRequest'
+      responses:
+        '200':
+          description: OK
+  /api/User/Seat/UpdateBookedSeat:
+    post:
+      tags:
+        - Seat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Theater'
+      responses:
+        '200':
+          description: OK
+  /api/User/Showtime/GetAllShowtimes:
+    get:
+      tags:
+        - Showtime
+      responses:
+        '200':
+          description: OK
+  /api/User/Showtime/GetShowtimes:
+    get:
+      tags:
+        - Showtime
+      parameters:
+        - name: movieId
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: showtimesDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: theaterName
+          in: query
+          schema:
+            type: string
+        - name: showtimesTime
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /api/User/Theater/GetTheater:
+    get:
+      tags:
+        - Theater
+      responses:
+        '200':
+          description: OK
+  /api/User/Theater/GetAvailableExperiences/{movieID}:
+    get:
+      tags:
+        - Theater
+      parameters:
+        - name: movieID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+  /api/User/Theater/GetFromDate:
+    post:
+      tags:
+        - Theater
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+  /api/User/Theater/GetAvailableTimes/{movieID}:
+    get:
+      tags:
+        - Theater
+      parameters:
+        - name: movieID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+  /api/User/Theater/GetAvailableTimesOnSelectedShowtime/{movieID}:
+    get:
+      tags:
+        - Theater
+      parameters:
+        - name: movieID
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: showtimes
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /api/User/Ticket/GetAllTickets:
+    get:
+      tags:
+        - Ticket
+      responses:
+        '200':
+          description: OK
+  /api/User/Ticket/AddTicket:
+    post:
+      tags:
+        - Ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ticket'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Ticket'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Ticket'
+      responses:
+        '200':
+          description: OK
+  /api/User/Ticket/GetTicketHistory/{userGuid}:
+    get:
+      tags:
+        - Ticket
+      parameters:
+        - name: userGuid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryDto'
+  /api/User/GetAllUser:
+    get:
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+  /api/User/SendOtp:
+    post:
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OtpRequestParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OtpRequestParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OtpRequestParam'
+      responses:
+        '200':
+          description: OK
+  /api/User/VerifyOtpAndCreateUser:
+    post:
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyOtpParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/VerifyOtpParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/VerifyOtpParam'
+      responses:
+        '200':
+          description: OK
+  /api/User/UserLogin:
+    post:
+      tags:
+        - User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginParam'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginParam'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserLoginParam'
+      responses:
+        '200':
+          description: OK
+  /WeatherForecast:
+    get:
+      tags:
+        - WeatherForecast
+      operationId: GetWeatherForecast
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+components:
+  schemas:
+    AddTheaterParam:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        totalRows:
+          type: integer
+          format: int32
+        totalColumns:
+          type: integer
+          format: int32
+      additionalProperties: false
+    AdminLoginParam:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        secretKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateAdminParam:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateBookingParam:
+      type: object
+      properties:
+        userGuid:
+          type: string
+          format: uuid
+        showtimeGuid:
+          type: string
+          format: uuid
+        selectedSeats:
+          type: array
+          items:
+            type: string
+          nullable: true
+        showtime:
+          $ref: '#/components/schemas/Showtime'
+      additionalProperties: false
+    CreateShowTimeParam:
+      required:
+        - showtimes
+      type: object
+      properties:
+        movieId:
+          type: integer
+          format: int32
+        theaterId:
+          type: integer
+          format: int32
+        ticketPrice:
+          type: number
+          format: double
+        showtimes:
+          type: string
+          format: date-time
+      additionalProperties: false
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        movieGUID:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        director:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        genre:
+          type: string
+          nullable: true
+        duration:
+          type: string
+          format: date-span
+        releaseDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        posterFilePath:
+          type: string
+          nullable: true
+        trailerFilePath:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OtpRequestParam:
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Showtime:
+      required:
+        - movieId
+        - showtimes
+        - theaterId
+      type: object
+      properties:
+        showtimeID:
+          type: integer
+          format: int32
+        showtimeGuid:
+          type: string
+          format: uuid
+        movieId:
+          type: integer
+          format: int32
+        movie:
+          $ref: '#/components/schemas/Movie'
+        theaterId:
+          type: integer
+          format: int32
+        theater:
+          $ref: '#/components/schemas/Theater'
+        showtimes:
+          type: string
+          format: date-time
+        ticketPrice:
+          type: number
+          format: double
+      additionalProperties: false
+    Theater:
+      required:
+        - name
+        - totalColumns
+        - totalRows
+      type: object
+      properties:
+        theaterID:
+          type: integer
+          format: int32
+        theaterGuid:
+          type: string
+          format: uuid
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        totalRows:
+          type: integer
+          format: int32
+        totalColumns:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Ticket:
+      type: object
+      properties:
+        ticketID:
+          type: integer
+          format: int32
+        bookingGuid:
+          type: string
+          format: uuid
+        seatID:
+          type: integer
+          format: int32
+        ticketPrice:
+          type: number
+          format: double
+        showtimeId:
+          type: integer
+          format: int32
+        showtimeGuid:
+          type: string
+          format: uuid
+        showtime:
+          $ref: '#/components/schemas/Showtime'
+      additionalProperties: false
+    TicketHistoryDto:
+      type: object
+      properties:
+        movieTitle:
+          type: string
+          nullable: true
+        theaterName:
+          type: string
+          nullable: true
+        showtime:
+          type: string
+          format: date-time
+        bookingDate:
+          type: string
+          format: date-time
+        ticketPrice:
+          type: number
+          format: double
+        seatID:
+          type: integer
+          format: int32
+        seatStringID:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateSeatRequest:
+      type: object
+      properties:
+        theater:
+          $ref: '#/components/schemas/Theater'
+        selectedSeat:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UpdateTheaterParam:
+      type: object
+      properties:
+        theaterGuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        totalRows:
+          type: integer
+          format: int32
+          nullable: true
+        totalColumns:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    UserLoginParam:
+      type: object
+      properties:
+        username:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserMessageRequest:
+      type: object
+      properties:
+        userConnectionId:
+          type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    VerifyOtpParam:
+      type: object
+      properties:
+        otp:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        username:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WeatherForecast:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        temperatureC:
+          type: integer
+          format: int32
+        temperatureF:
+          type: integer
+          format: int32
+          readOnly: true
+        summary:
+          type: string
+          nullable: true
+      additionalProperties: false
